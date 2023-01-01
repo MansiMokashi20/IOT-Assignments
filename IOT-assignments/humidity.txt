@@ -1,0 +1,37 @@
+ Q.Design and implement parameter monitoring IoT system keeping records on
+Cloud such as environment humidity and temperature.
+Ans.
+import sys
+import urllib
+from time import sleep
+import Adafruit_DHT as dht
+
+myAPI = 'VAOJ9NK9KO7VZCE'
+
+baseURL ='https://api.thingspeak.com/update?api_key=%s'%myAPI 
+
+def DHT22_data():
+humi,temp = dht.read_retry(dht.DHT22,22)
+return humi,temp
+
+while True:
+try:
+h,t=DHT22_data()
+
+if isinstance(h,float)and isinstance(t,float):
+humi ='%.2f'%h
+temp ='%.2f'%t
+print('Data')
+
+conn = urllib.urlopen(baseURL + '&field1=%s&field2=%s'%(humi,temp))
+
+print(conn.read())
+conn.close()
+else:
+print('Error')
+sleep(7)
+except:
+print("About")
+break
+
+

@@ -1,0 +1,12 @@
+Q.Design and simulate IoT system using Arduino Uno/ Raspberry Pi along with
+Ultrasonic sensor and Servo motor for the application such as Door opener in
+home automation
+Ans.
+*ULTRASONIC SENSOR=
+#define echoPin 2
+#define trigPin 3
+
+long duration;
+int distance;
+
+void setup()
